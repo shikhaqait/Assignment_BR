@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="logger">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%highlight{%-1level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green} (%F:%L)
+      %msg%n%throwable"/>
+        </Console>
+
+        <File name="FILEOUT" fileName="log4j.log" append="false">
+            <PatternLayout
+                    pattern="{%date{DEFAULT}}
+      {%-1level} (%F:%L) %msg%n%throwable"/>
+        </File>
+
+        <Reporter name="TestReporter">
+            <PatternLayout
+                    pattern="%date{DEFAULT} %-1level (%F:%L) : %msg%n%throwable %n"/>
+        </Reporter>
+
+
+    </Appenders>
+    <Loggers>
+        <Root level="debug" additivity="false">
+            <AppenderRef ref="FILEOUT" level="debug"/>
+            <AppenderRef ref="console" level="info"/>
+            <AppenderRef ref="TestReporter" level="info"/>
+        </Root>
+    </Loggers>
+</Configuration>
